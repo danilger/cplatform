@@ -1,0 +1,34 @@
+import { cookies } from "next/headers";
+
+const RoleGuard = async (role: string) => {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get("access_token");
+  const isLogin = cookieStore.get("user_logged_in")?.value;
+
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify({ token: accessToken?.value });
+
+  const requestOptions: any = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  const user: any = await fetch(
+    "http://localhost:5000/auth/guard",
+    requestOptions
+  )
+    .then((response) => response.json())
+    .then((result) => result)
+    .catch((error) => console.log("error", error));
+
+  if (isLogin && user && user.role === role) {
+    return user;
+  }
+  return false;
+};
+
+export default RoleGuard;
