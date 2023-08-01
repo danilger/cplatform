@@ -14,10 +14,10 @@ const Login = () => {
         setIsLogin(loggedIn)
     }, [])
 
-    const CelarCookies = async () => {
+    const logOut = async () => {
 
         deleteCookie('user_logged_in')
-        await DeleteHttpOnlyCookies(['access_token'])
+        DeleteHttpOnlyCookies(['access_token'])
         setIsLogin(false)
         window.location.replace('/')
 
@@ -32,7 +32,7 @@ const Login = () => {
         <>
 
             {isLogin ?
-                <div className="adminCase"><a href="/admin">Личный кабинет</a><div onClick={CelarCookies}>Выйти</div></div> :
+                <div className="adminCase"><a href="/admin">Личный кабинет</a><div onClick={logOut}>Выйти</div></div> :
                 <div onClick={() => { OnOf(SetShowLoginForm) }}>Войти</div>
             }
 
