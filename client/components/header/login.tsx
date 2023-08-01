@@ -5,7 +5,7 @@ import { getCookie, deleteCookie } from 'cookies-next';
 import DeleteHttpOnlyCookies from "@/helpers/cookies/deleteHttpOnlyCookie";
 
 
-const LoginButton = () => {
+const Login = () => {
     const [showLoginForm, SetShowLoginForm] = useState(false)
     const [isLogin, setIsLogin] = useState(false)
 

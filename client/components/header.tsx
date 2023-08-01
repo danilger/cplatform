@@ -1,5 +1,5 @@
 import Link from "next/link"
-import LoginButton from "./header/loginButton"
+import Login from "./header/login"
 
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
         <header className="container">
             <nav className="headerNav shadow">
                 <Link href="/">Логотип</Link>
-                <LoginButton />
+                <Login />
             </nav>
         </header>)
 }
