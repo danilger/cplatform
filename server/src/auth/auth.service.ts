@@ -91,7 +91,7 @@ export class AuthService {
     await this.mailService.sendMail(
       userDto.email,
       'Смена пароля',
-      `Для смены пароля перейдите по этой ссылке: localhost:${process.env.PORT}/auth/reset/?token=${token}`,
+      `Для смены пароля перейдите по этой ссылке: localhost:${process.env.HOST}/auth/reset/?token=${token}`,
     );
     return {
       message:
@@ -142,7 +142,7 @@ export class AuthService {
         httpOnly: true,
         maxAge: -1,
         path: '/', // Указать путь, если был использован при установке
-        domain: 'localhost',
+        domain: process.env.HOST,
       },
     );
 

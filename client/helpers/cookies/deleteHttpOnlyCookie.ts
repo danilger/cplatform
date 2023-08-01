@@ -12,7 +12,10 @@ const DeleteHttpOnlyCookies = async (cookies: string[]) => {
       credentials: "include",
       redirect: "follow",
     };
-    await fetch("http://localhost:5000/auth/logout", requestOptions);
+    await fetch(
+      `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/logout`,
+      requestOptions
+    );
   };
 
   await Promise.all(cookies.map((cookie) => send(cookie)));

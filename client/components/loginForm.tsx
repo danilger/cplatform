@@ -52,10 +52,8 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
         const email = emailRef2.current?.value || '';
         const password = passwordRef2.current?.value || '';
         const res = await ResetPassword(email, password)
-        alert('Письмо с сылкой для восстановления пароля отправленно вам на e-mail/')
+        alert('Письмо с сылкой для восстановления пароля отправленно вам на e-mail.')
     }
-
-
 
     const refs = useRef<HTMLDivElement[]>([]);
 

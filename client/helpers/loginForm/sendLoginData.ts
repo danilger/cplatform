@@ -15,7 +15,10 @@ const sendData = async (email: string, password: string): Promise<boolean> => {
     redirect: "follow",
   };
 
-  const resp = await fetch("http://localhost:5000/auth/login", requestOptions)
+  const resp = await fetch(
+    `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/login`,
+    requestOptions
+  )
     .then((response) => response.json())
     .then((response) => response)
     .catch((error) => console.log("error", error));

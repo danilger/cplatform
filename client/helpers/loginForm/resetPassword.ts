@@ -15,7 +15,7 @@ const ResetPassword = async (email: string, password: string) => {
   };
 
   return await fetch(
-    "http://localhost:5000/auth/changepassword",
+    `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/changepassword`,
     requestOptions
   )
     .then((response) => response.json())
