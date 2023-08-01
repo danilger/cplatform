@@ -41,4 +41,4 @@ const Login = () => {
         </>
     )
 }
-export default LoginButton
+export default Login
