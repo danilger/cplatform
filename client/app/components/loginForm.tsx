@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from "react";
-import Enter from "@/helpers/loginForm/enter";
-import Registrate from "@/helpers/loginForm/registrate";
-import { Display } from "@/helpers/display";
-import ResetPassword from "@/helpers/loginForm/resetPassword";
+import Enter from "../helpers/loginForm/enter";
+import ResetPassword from "../helpers/loginForm/resetPassword";
+import { Display } from "../helpers/display";
+import Registrate from "../helpers/loginForm/registrate";
 
 
 

@@ -13,7 +13,7 @@ const DeleteHttpOnlyCookies = async (cookies: string[]) => {
       redirect: "follow",
     };
     await fetch(
-      `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/logout`,
+      `http://${process.env.NEXT_PUBLIC_ENV_LOCAL_HOST}:${process.env.NEXT_PUBLIC_ENV_LOCAL_SERVER_PORT}/auth/logout`,
       requestOptions
     );
   };

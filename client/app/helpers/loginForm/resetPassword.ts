@@ -1,4 +1,4 @@
-const sendData = async (email: string, password: string): Promise<boolean> => {
+const ResetPassword = async (email: string, password: string) => {
   let myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -10,19 +10,17 @@ const sendData = async (email: string, password: string): Promise<boolean> => {
   const requestOptions: RequestInit = {
     method: "POST",
     headers: myHeaders,
-    credentials: "include",
     body: raw,
     redirect: "follow",
   };
 
-  const resp = await fetch(
-    `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/login`,
+  return await fetch(
+    `http://${process.env.NEXT_PUBLIC_ENV_LOCAL_HOST}:${process.env.NEXT_PUBLIC_ENV_LOCAL_SERVER_PORT}/auth/changepassword`,
     requestOptions
   )
     .then((response) => response.json())
-    .then((response) => response)
+    .then((result) => result)
     .catch((error) => console.log("error", error));
-  return resp;
 };
 
-export default sendData;
+export default ResetPassword;

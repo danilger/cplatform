@@ -72,3 +72,41 @@ body > main {
   flex-direction: column;
   align-items: center;
 }
+.post {
+  width: 100%;
+  padding: 30px 30px;
+}
+
+.postTitle {
+  font-size: 2rem;
+}
+
+.postDate {
+  font-size: 0.8rem;
+}
+
+.post>.postTitle {
+  margin: 20px 0;
+}
+
+.postDate {
+  margin: 10px 0;
+}
+
+.postContent {
+  margin: 10px 0;
+}
+
+.postUserName {
+  font-weight: 700;
+}
+
+.post img {
+  border: 1px solid #00000017;
+  object-fit: contain;
+  object-position: center;
+}
+
+.post>img {
+  margin: 10px 0;
+}

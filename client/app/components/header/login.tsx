@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import LoginForm from "../loginForm";
 import { getCookie, deleteCookie } from 'cookies-next';
-import DeleteHttpOnlyCookies from "@/helpers/cookies/deleteHttpOnlyCookie";
+import DeleteHttpOnlyCookies from "@/app/helpers/cookies/deleteHttpOnlyCookie";
+
 
 
 const Login = () => {

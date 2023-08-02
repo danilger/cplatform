@@ -32,7 +32,7 @@ const Registrate = async (
     };
 
     let res = await fetch(
-      `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/registration`,
+      `http://${process.env.NEXT_PUBLIC_ENV_LOCAL_HOST}:${process.env.NEXT_PUBLIC_ENV_LOCAL_SERVER_PORT}/auth/registration`,
       requestOptions
     )
       .then((response) => response.json())

@@ -18,7 +18,7 @@ const RoleGuard = async (role: string) => {
   };
 
   const user: any = await fetch(
-    `http://${process.env.HOST}:${process.env.SERVER_PORT}/auth/guard`,
+    `http://${process.env.NEXT_PUBLIC_ENV_LOCAL_HOST}:${process.env.NEXT_PUBLIC_ENV_LOCAL_SERVER_PORT}/auth/guard`,
     requestOptions
   )
     .then((response) => response.json())
