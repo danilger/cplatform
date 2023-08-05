@@ -120,14 +120,27 @@ export class AuthService {
   }
 
   verifyToken(request: any) {
-    const bearer = request.headers.authorization.split(' ')[0];
-    const token = request.headers.authorization.split(' ')[1];
-
-    if (bearer != 'Bearer' || !token) {
-      throw new UnauthorizedException('Пользователь не авторизован');
+    if (request.headers.cookie.includes('access_token')) {
+      const accesstToken =
+        request.headers.cookie
+          .split(';')
+          .filter((e: string) => e.includes('access_token'))[0]
+          .split('=')[1] || false;
+      if (!accesstToken) {
+        throw new UnauthorizedException('Пользователь не авторизован');
+      }
+      return this.jwtService.verify(accesstToken);
     }
 
-    return this.jwtService.verify(token);
+    if (request.headers.authorization.includes('Bearer')) {
+      const token = request.headers.authorization.split(' ')[1] || false;
+      if (!token) {
+        throw new UnauthorizedException('Пользователь не авторизован');
+      }
+      return this.jwtService.verify(token);
+    }
+
+    throw new UnauthorizedException('Пользователь не авторизован');
   }
 
   checkToken(data: any) {

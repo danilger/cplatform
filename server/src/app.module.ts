@@ -8,6 +8,8 @@ import { ConfigModule } from '@nestjs/config';
 import { FilesModule } from './files/files.module';
 import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/entities/post.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 
 @Module({
   imports: [
@@ -23,6 +25,9 @@ import { Post } from './posts/entities/post.entity';
       database: process.env.DB_NAME,
       autoLoadModels: true,
       models: [User, Post],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'static'),
     }),
     UserModule,
     AuthModule,

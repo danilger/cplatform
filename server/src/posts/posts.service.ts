@@ -58,6 +58,6 @@ export class PostsService {
       throw new NotFoundException(`Запись с id:${id} не найдена`);
     }
     await post.destroy();
-    return 'Пост удален';
+    return JSON.stringify({ message: 'Запись удалена' });
   }
 }

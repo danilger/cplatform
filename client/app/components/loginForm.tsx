@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useRef, useState } from "react";
 import Enter from "../helpers/loginForm/enter";
 import ResetPassword from "../helpers/loginForm/resetPassword";

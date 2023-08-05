@@ -33,8 +33,8 @@ const Login = () => {
         <>
 
             {isLogin ?
-                <div className="adminCase"><a href="/admin">Личный кабинет</a><div onClick={logOut}>Выйти</div></div> :
-                <div onClick={() => { OnOf(SetShowLoginForm) }}>Войти</div>
+                <div className="adminCase"><a href="/admin">Личный кабинет</a><div onClick={logOut} className="loginButton">Выйти</div></div> :
+                <div className="loginButton" onClick={() => { OnOf(SetShowLoginForm) }}>Войти</div>
             }
 
             <LoginForm show={[showLoginForm, SetShowLoginForm, setIsLogin, OnOf]} />

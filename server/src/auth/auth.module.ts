@@ -4,10 +4,12 @@ import { AuthService } from './auth.service';
 import { UserModule } from 'src/user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from 'src/mail/mail.module';
+import { PostsModule } from 'src/posts/posts.module';
 
 @Module({
   imports: [
     forwardRef(() => UserModule),
+    forwardRef(() => PostsModule),
     JwtModule.register({ secret: 'qwwwqw', signOptions: { expiresIn: '24h' } }),
     MailModule,
   ],
