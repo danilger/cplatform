@@ -12,6 +12,7 @@ interface MulterFile {
 export class FilesService {
   async createFile(file: MulterFile): Promise<{ file: string; path: string }> {
     try {
+      console.log(file);
       const ext = file.originalname.split('.')[1];
       const fileName = uuid.v4() + '.' + ext;
       const filePath = path.resolve(__dirname, '..', 'static');

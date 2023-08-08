@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image'
-import getAllPosts from '../helpers/posts/getAllPosts';
-import formatDate from '../helpers/formatDate';
+import getAllPosts from '../../helpers/posts/getAllPosts';
+import formatDate from '../../helpers/formatDate';
 
 
 const Posts = async () => {

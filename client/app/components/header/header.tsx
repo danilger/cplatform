@@ -1,5 +1,5 @@
 import Link from "next/link"
-import Login from "./header/login"
+import Login from "./login"
 
 
 const Header = () => {

@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import Enter from "../helpers/loginForm/enter";
-import ResetPassword from "../helpers/loginForm/resetPassword";
-import { Display } from "../helpers/display";
-import Registrate from "../helpers/loginForm/registrate";
+import Enter from "../../helpers/loginForm/enter";
+import ResetPassword from "../../helpers/loginForm/resetPassword";
+import { Display } from "../../helpers/display";
+import Registrate from "../../helpers/loginForm/registrate";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { selectShowLoginForm, setShowLoginForm } from "../store/slices/showLoginFormSlice";
 
 
 
-const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }: any) => {
+
+const LoginForm = () => {
+
+    const showLoginForm = useAppSelector(selectShowLoginForm)
+    const dispatch = useAppDispatch()
+
 
     const popupBack = useRef<HTMLDivElement>(null)
 
@@ -20,12 +27,10 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
     const checkPasswordRef = useRef<HTMLInputElement>(null);
 
 
-
-
     const Login = () => {
         const email = emailRef1.current?.value || '';
         const password = passwordRef1.current?.value || '';
-        Enter(setIsLogin, SetShowLoginForm, email, password)
+        Enter(dispatch, email, password)
     }
 
     const Registration = async () => {
@@ -38,8 +43,8 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
             const res: boolean = await Registrate(email, password)
 
             if (res) {
-                OnOf(SetShowLoginForm)
-                Enter(setIsLogin, SetShowLoginForm, email, password)
+                dispatch(setShowLoginForm())
+                Enter(dispatch, email, password)
             }
 
         } else { alert('Пароли не совпадают') }
@@ -50,6 +55,7 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
         const email = emailRef2.current?.value || '';
         const password = passwordRef2.current?.value || '';
         const res = await ResetPassword(email, password)
+        console.log(res)
         alert('Письмо с сылкой для восстановления пароля отправленно вам на e-mail.')
     }
 
@@ -73,13 +79,13 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
 
     return (
         <div ref={popupBack} className="popupBack" style={Display(showLoginForm)}>
-            <div className="shadow loginForm" onKeyDown={(e) => { if (e.key === 'Enter') { Login() } }}>
+            <div className="shadow form" onKeyDown={(e) => { if (e.key === 'Enter') { Login() } }}>
 
 
-                <div className="close" onClick={() => { OnOf(SetShowLoginForm); switcher(0) }}>×</div>
+                <div className="close" onClick={() => { dispatch(setShowLoginForm()); switcher(0) }}>×</div>
 
 
-                <div ref={el => ref(el, 0)} className="loginWrapper">
+                <div ref={el => ref(el, 0)} className="formWrapper">
                     <h3>Войти</h3>
                     <input ref={emailRef1} name="email" type="email" className="inputField" placeholder="Email" />
                     <input ref={passwordRef1} name="password" type="password" className="inputField" placeholder="Password" />
@@ -90,7 +96,7 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
                     <div onClick={() => switcher(2)}>Регистрация</div>
                 </div>
 
-                <div ref={el => ref(el, 1)} className="loginWrapper">
+                <div ref={el => ref(el, 1)} className="formWrapper">
                     <h3>Восстаноление пароля</h3>
                     <input ref={emailRef2} name="email" type="email" className="inputField" placeholder="Email" />
                     <input ref={passwordRef2} name="password" type="password" className="inputField" placeholder="Password" />
@@ -101,7 +107,7 @@ const LoginForm = ({ show: [showLoginForm, SetShowLoginForm, setIsLogin, OnOf] }
                     <div onClick={() => switcher(2)}>Регистрация</div>
                 </div>
 
-                <div ref={el => ref(el, 2)} className="loginWrapper">
+                <div ref={el => ref(el, 2)} className="formWrapper">
                     <h3>Регистрация</h3>
                     <input ref={registrationEmailRef} name="email" type="email" className="inputField" placeholder="Email" />
                     <input ref={registrationPasswordRef} name="password" type="password" className="inputField" placeholder="Password" />

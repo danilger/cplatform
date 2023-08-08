@@ -60,7 +60,7 @@ body > main {
 }
 
 
-.loginForm{
+.form{
   display: flex;
   flex-direction: column;
   min-width: 300px;
@@ -72,13 +72,13 @@ body > main {
   border-radius: 0.375rem;
 }
 
-.loginForm>.close {
+.form>.close {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-.loginWrapper, .registrationWrapper {
+.formWrapper, .registrationWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
