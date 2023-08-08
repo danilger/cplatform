@@ -1,6 +1,7 @@
+import { offDisplayCreatePost } from "@/app/components/store/slices/panelSlice";
 import { fetchAllPosts } from "@/app/components/store/slices/showPostsSlice";
 
-const SavePost = (formData: FormData, dispatch: Function, SetDisplay: any) => {
+const SavePost = (formData: FormData, dispatch: Function) => {
   var requestOptions: RequestInit = {
     method: "POST",
     body: formData,
@@ -16,7 +17,7 @@ const SavePost = (formData: FormData, dispatch: Function, SetDisplay: any) => {
     .then((result) => {
       console.log(result);
       dispatch(fetchAllPosts());
-      SetDisplay({ display: "none" });
+      dispatch(offDisplayCreatePost());
     })
     .catch((error) => console.log("error", error));
 };

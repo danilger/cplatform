@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import isLoginSlice from "./slices/isLoginSlice";
 import showLoginFormSlice from "./slices/showLoginFormSlice";
+import panelSlice from "./slices/panelSlice";
 import showPostSlice from "./slices/showPostsSlice";
 
 // ...
@@ -10,6 +11,7 @@ export const store = configureStore({
     isLogin: isLoginSlice.reducer,
     showLoginForm: showLoginFormSlice.reducer,
     showPosts: showPostSlice.reducer,
+    panel: panelSlice.reducer,
   },
 });
 

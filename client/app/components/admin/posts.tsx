@@ -18,7 +18,6 @@ const Posts = () => {
 
     return (<>
 
-
         {allPosts.map((post: any) => {
             return (
 

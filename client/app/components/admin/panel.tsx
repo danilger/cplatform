@@ -2,13 +2,13 @@
 import React, { useContext } from 'react';
 import CreatePost from './createPost';
 import styles from '../../css/admin.module.css'
-import { useState } from "react"
 import Posts from './posts';
-import { useAppDispatch } from '../store/hooks';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchAllPosts } from '../store/slices/showPostsSlice';
+import { onDisplayCreatePost, selectPanelSlice } from '../store/slices/panelSlice';
 
 const Panel: React.FC = () => {
-    const [display, SetDisplay] = useState({ display: 'none' })
+
     const dispatch = useAppDispatch()
 
     return (
@@ -18,10 +18,10 @@ const Panel: React.FC = () => {
             <div className={styles.panelWrapper}>
                 <div className={styles.menu + " shadow"}>
                     <div className={styles.button} onClick={() => { dispatch(fetchAllPosts()) }}>Записи</div>
-                    <div className={styles.button} onClick={() => SetDisplay({ display: 'flex' })}>Создать запись</div>
+                    <div className={styles.button} onClick={() => { dispatch(onDisplayCreatePost()) }}>Создать запись</div>
                 </div>
                 <div className={styles.panel + " shadow"}>
-                    <CreatePost show={[display, SetDisplay]} />
+                    <CreatePost />
                     <Posts />
                 </div>
             </div>
