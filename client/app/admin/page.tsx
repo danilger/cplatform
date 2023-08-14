@@ -12,12 +12,12 @@ const Admin = async () => {
 
     const user = await RoleGuard('administrator')
 
-
-
     if (user) {
+
         return (
             <Panel />
         )
+
     }
 }
 

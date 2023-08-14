@@ -21,4 +21,11 @@ export class UserController {
   GetUser(@Param('value') id: string) {
     return this.UserService.getUserById(id);
   }
+
+  @Roles('administrator')
+  @Post('setrole')
+  async SetRole(@Body() setRoleDto: { userId: string; role: string }) {
+    console.log(setRoleDto);
+    return await this.UserService.setRole(setRoleDto);
+  }
 }

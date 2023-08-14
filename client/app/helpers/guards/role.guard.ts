@@ -25,9 +25,11 @@ const RoleGuard = async (role: string) => {
     .then((result) => result)
     .catch((error) => console.log("error", error));
 
-  if (isLogin && user && user.role === role) {
-    return user;
-  }
+    console.log(user);
+
+    if (isLogin && user && user.roles.includes(role)) {
+      return user;
+    }
   return false;
 };
 

@@ -4,7 +4,8 @@
 /.pnp
 .pnp.js
 
-
+# migration config
+/config/config.json
 
 # sub git
 /client/.git

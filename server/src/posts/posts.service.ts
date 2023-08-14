@@ -39,11 +39,7 @@ export class PostsService {
     return this.postRepository.findByPk(id);
   }
 
-  async update(
-    id: number,
-    updatePostDto: UpdatePostDto,
-    request: any,
-  ): Promise<Post> {
+  async update(id: number, updatePostDto: UpdatePostDto): Promise<Post> {
     let post: Post = await this.postRepository.findByPk(id);
     if (!post) {
       throw new NotFoundException(`Запись с id:${id} не найдена`);

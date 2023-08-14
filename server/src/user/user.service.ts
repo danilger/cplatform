@@ -8,22 +8,36 @@
 
 */
 
-import { Injectable, UseGuards } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UseGuards,
+} from '@nestjs/common';
 import { User } from './user.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create.user.dto';
+import { Role } from 'src/role/entities/role.entity';
+import { setRoleDto } from './dto/set.role.dto';
+import { UserRole } from 'src/role/entities/user-role.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User) private userRepository: typeof User) {}
+  constructor(
+    @InjectModel(User) private userRepository: typeof User,
+    @InjectModel(Role) private roleRepository: typeof Role,
+    @InjectModel(UserRole) private userRoleRepository: typeof UserRole,
+  ) {}
 
-  createUser(dto: CreateUserDto) {
-    const user = this.userRepository.create(dto);
+  async createUser(dto: CreateUserDto) {
+    const user = await this.userRepository.create(dto);
     return user;
   }
 
-  getUserById(id: string) {
-    const user = this.userRepository.findByPk(id);
+  async getUserById(id: string) {
+    const user = await this.userRepository.findByPk(id, {
+      include: { all: true },
+    });
     return user;
   }
 
@@ -39,5 +53,16 @@ export class UserService {
   async getUserByEmail(email: string) {
     const user = await this.userRepository.findOne({ where: { email } });
     return user;
+  }
+
+  async setRole(setRoleDto: setRoleDto) {
+    const role = await this.roleRepository.findOne({
+      where: { role: setRoleDto.role },
+    });
+    const user = await this.userRepository.findByPk(setRoleDto.userId);
+    if (!role || !user) {
+      throw new HttpException('message', HttpStatus.BAD_REQUEST);
+    }
+    return await user.$add('roles', role.id);
   }
 }

@@ -47,7 +47,7 @@ export class PostsController {
     @Body() updatePostDto: UpdatePostDto,
     @Req() request: any,
   ) {
-    return this.postsService.update(+id, updatePostDto, request);
+    return this.postsService.update(+id, updatePostDto);
   }
 
   @UseGuards(UserGuard)

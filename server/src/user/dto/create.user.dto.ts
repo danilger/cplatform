@@ -1,9 +1,11 @@
-type Role = 'investor' | 'business' | 'user' | 'administrator';
+type Roles = Array<
+  'investor' | 'business' | 'user' | 'administrator' | 'tester'
+>;
 
 export class CreateUserDto {
   readonly email: string;
   readonly password: string;
-  readonly role: Role;
+  readonly roles: Roles;
   readonly resetPassword?: string;
   constructor() {
     this.resetPassword = '';

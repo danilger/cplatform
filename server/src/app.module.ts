@@ -9,7 +9,10 @@ import { FilesModule } from './files/files.module';
 import { PostsModule } from './posts/posts.module';
 import { Post } from './posts/entities/post.entity';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { RoleModule } from './role/role.module';
 import * as path from 'path';
+import { Role } from './role/entities/role.entity';
+import { UserRole } from './role/entities/user-role.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import * as path from 'path';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadModels: true,
-      models: [User, Post],
+      models: [User, Post, Role, UserRole],
     }),
     ServeStaticModule.forRoot({
       rootPath: path.resolve(__dirname, 'static'),
@@ -34,6 +37,7 @@ import * as path from 'path';
     MailModule,
     FilesModule,
     PostsModule,
+    RoleModule,
   ],
 })
 export class AppModule {}

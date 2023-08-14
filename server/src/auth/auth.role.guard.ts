@@ -27,9 +27,8 @@ export class RolesGuard implements CanActivate {
       const req = context.switchToHttp().getRequest(); //получаем обькт запроса пользователя
       const user = this.authService.verifyToken(req); // проверяем валидность токена
 
-      return requiredRoles.includes(user.role); // если роль пользователя содержится в массиве ролей из мета данных контекста то возвращаем true
+      return user.roles.some((role: string) => requiredRoles.includes(role)); // если роль пользователя содержится в массиве ролей из мета данных контекста то возвращаем true
     } catch (e) {
-      console.log(e);
       throw new HttpException('Доступ запрещен', HttpStatus.FORBIDDEN);
     }
   }

@@ -1,5 +1,17 @@
-import { Column, DataType, Model, Table, HasMany } from 'sequelize-typescript';
-import { Post } from 'src/posts/entities/post.entity';
+import {
+  Column,
+  DataType,
+  Model,
+  Table,
+  HasMany,
+  BelongsToMany,
+} from 'sequelize-typescript';
+// import { Post } from 'src/posts/entities/post.entity';
+import { Post } from '../posts/entities/post.entity';
+// import { Role } from 'src/role/entities/role.entity';
+import { Role } from '../role/entities/role.entity';
+// import { UserRole } from 'src/role/entities/user-role.entity';
+import { UserRole } from '../role/entities/user-role.entity';
 
 interface UserCreationAttrs {
   email: string;
@@ -20,9 +32,6 @@ export class User extends Model<User, UserCreationAttrs> {
   email: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  role: string;
-
-  @Column({ type: DataType.STRING, allowNull: false })
   password: string;
 
   @Column({ type: DataType.STRING, allowNull: true })
@@ -30,4 +39,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @HasMany(() => Post)
   posts: Post[];
+
+  @BelongsToMany(() => Role, () => UserRole)
+  roles: [Role];
 }

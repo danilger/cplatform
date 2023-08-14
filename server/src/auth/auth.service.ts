@@ -21,7 +21,11 @@ export class AuthService {
   ) {}
 
   private async generateToken(user: User) {
-    const payload = { email: user.email, id: user.id, role: user.role };
+    const payload = {
+      email: user.email,
+      id: user.id,
+      roles: user.roles.map((r) => r.role),
+    };
     return { token: this.jwtService.sign(payload) };
   }
 
@@ -42,7 +46,8 @@ export class AuthService {
 
   async login(loginUserDto: LoginUserDto, response: any) {
     const user = await this.validateUser(loginUserDto);
-    const dataToken = await this.generateToken(user);
+    const userFromDB = await this.userService.getUserById(`${user.id}`);
+    const dataToken = await this.generateToken(userFromDB);
 
     response.cookie('access_token', dataToken.token, {
       httpOnly: true,
