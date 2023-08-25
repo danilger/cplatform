@@ -5,11 +5,12 @@ import {
   Model,
   ForeignKey,
 } from 'sequelize-typescript';
-import { User } from '../../user/user.model';
-import { Role } from './role.entity';
 
-@Table({ tableName: 'user-role' })
-export class UserRole extends Model<UserRole, any> {
+import { Tag } from './tag.entity';
+import { Post } from './post.entity';
+
+@Table({ tableName: 'post-tag' })
+export class PostTag extends Model<PostTag, any> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -18,15 +19,15 @@ export class UserRole extends Model<UserRole, any> {
   })
   id: number;
 
-  @ForeignKey(() => Role)
+  @ForeignKey(() => Post)
   @Column({
     type: DataType.INTEGER,
   })
-  idRole: number;
+  idPost: number;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => Tag)
   @Column({
     type: DataType.INTEGER,
   })
-  idUser: number;
+  idTag: number;
 }

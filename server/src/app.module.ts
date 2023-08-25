@@ -13,6 +13,8 @@ import { RoleModule } from './role/role.module';
 import * as path from 'path';
 import { Role } from './role/entities/role.entity';
 import { UserRole } from './role/entities/user-role.entity';
+import { PostTag } from './posts/entities/post-tag.entity';
+import { Tag } from './posts/entities/tag.entity';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { UserRole } from './role/entities/user-role.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadModels: true,
-      models: [User, Post, Role, UserRole],
+      models: [User, Post, Role, UserRole, Tag, PostTag],
     }),
     ServeStaticModule.forRoot({
       rootPath: path.resolve(__dirname, 'static'),

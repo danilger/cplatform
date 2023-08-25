@@ -8,8 +8,8 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FilesService } from './files.service';
-import { Roles } from 'src/auth/auth.role.decorator';
-import { RolesGuard } from 'src/auth/auth.role.guard';
+import { Roles } from '../auth/auth.role.decorator';
+import { RolesGuard } from '../auth/auth.role.guard';
 
 @Controller('files')
 export class FilesController {

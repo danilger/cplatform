@@ -3,11 +3,10 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './user.model';
-import { AuthModule } from 'src/auth/auth.module';
-import { Post } from 'src/posts/entities/post.entity';
-import { RoleModule } from 'src/role/role.module';
-import { UserRole } from 'src/role/entities/user-role.entity';
-import { Role } from 'src/role/entities/role.entity';
+import { AuthModule } from '../auth/auth.module';
+import { Post } from '../posts/entities/post.entity';
+import { UserRole } from '../role/entities/user-role.entity';
+import { Role } from '../role/entities/role.entity';
 
 @Module({
   providers: [UserService],

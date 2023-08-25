@@ -14,7 +14,7 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { UserGuard } from 'src/auth/auth.user.guard';
+import { UserGuard } from '../auth/auth.user.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('posts')

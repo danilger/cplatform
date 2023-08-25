@@ -6,11 +6,8 @@ import {
   HasMany,
   BelongsToMany,
 } from 'sequelize-typescript';
-// import { Post } from 'src/posts/entities/post.entity';
 import { Post } from '../posts/entities/post.entity';
-// import { Role } from 'src/role/entities/role.entity';
 import { Role } from '../role/entities/role.entity';
-// import { UserRole } from 'src/role/entities/user-role.entity';
 import { UserRole } from '../role/entities/user-role.entity';
 
 interface UserCreationAttrs {

@@ -17,9 +17,9 @@ import {
 import { User } from './user.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create.user.dto';
-import { Role } from 'src/role/entities/role.entity';
+import { Role } from '../role/entities/role.entity';
 import { setRoleDto } from './dto/set.role.dto';
-import { UserRole } from 'src/role/entities/user-role.entity';
+import { UserRole } from '../role/entities/user-role.entity';
 
 @Injectable()
 export class UserService {

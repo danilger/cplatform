@@ -7,8 +7,8 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './entities/post.entity';
 import { InjectModel } from '@nestjs/sequelize';
-import { FilesService } from 'src/files/files.service';
-import { AuthService } from 'src/auth/auth.service';
+import { FilesService } from '../files/files.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class PostsService {

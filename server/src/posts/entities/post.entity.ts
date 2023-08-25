@@ -5,9 +5,11 @@ import {
   ForeignKey,
   Model,
   Table,
+  BelongsToMany,
 } from 'sequelize-typescript';
-// import { User } from 'src/user/user.model';
 import { User } from '../../user/user.model';
+import { Tag } from './tag.entity';
+import { PostTag } from './post-tag.entity';
 
 interface PostCreationAttrs {
   title: string;
@@ -41,4 +43,7 @@ export class Post extends Model<Post, PostCreationAttrs> {
 
   @BelongsTo(() => User)
   author: User;
+
+  @BelongsToMany(() => Tag, () => PostTag)
+  tag: [Tag];
 }
