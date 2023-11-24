@@ -61,10 +61,20 @@ sudo nano /etc/nginx/sites-available/default
 2. Настройте его в соответствии с вашими потребностями:
 
 ```bash
+
 server {
     listen 80;
-    
-    server_name your-domain.com;
+    server_name  your-domain.com;
+
+    return 301 https://your-domain.com;
+}
+
+server {
+    listen 443 ssl;
+    server_name  your-domain.com;
+
+    ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
     location /api/ {
         proxy_pass http://localhost:5000/;
@@ -84,6 +94,7 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 }
+
 
 ```
 
